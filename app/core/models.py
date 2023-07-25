@@ -1,3 +1,4 @@
+
 from django.db import models
 from django.contrib.auth.models import (
     AbstractBaseUser,
@@ -26,6 +27,7 @@ class UserManager(BaseUserManager):
         user.is_superuser = True
         user.save(using=self._db)
         return user
+
 
 class User(AbstractBaseUser, PermissionsMixin):
     """User in the system."""
