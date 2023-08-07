@@ -6,6 +6,8 @@ from django.contrib.auth import get_user_model
 
 from decimal import Decimal
 from core import models
+
+
 class TestModels(TestCase):
     """Test Models."""
 
@@ -52,10 +54,10 @@ class TestModels(TestCase):
             'testpass123',
         )
         recipe = models.Recipe.objects.create(
-            user = user,
-            title = 'sample recipe title',
-            time_minute = 5,
-            price = Decimal('5,50'),
-            description = 'recipe description',
+            user=user,
+            title='Sample recipe title',
+            time_minutes=5,
+            price=Decimal('5.50'),
+            description='Recipe description',
         )
         self.assertEqual(str(recipe), recipe.title)
