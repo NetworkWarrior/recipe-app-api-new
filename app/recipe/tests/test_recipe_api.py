@@ -12,7 +12,7 @@ from core.models import Recipe
 from recipe.serializers import RecipeSerializer
 
 
-RECIPE_URL = reverse('recipe:recipe_list')
+RECIPE_URL = reverse('recipe:recipe-list')
 
 
 def create_recipe(user, **params):
@@ -20,14 +20,15 @@ def create_recipe(user, **params):
     defaults = {
         'title': 'Sample recipe title',
         'time_minutes': 22,
-        'price': Decimal('5,25'),
+        'price': Decimal('5.25'),
         'description': 'Sample description',
-        'links': 'http://example.com/recipe.pdf'
+        'link': 'http://example.com/recipe.pdf'
     }
     defaults.update(params)
 
     recipe = Recipe.objects.create(user=user, **defaults)
     return recipe
+
 
 class PublicRecipeAPITests(TestCase):
     """Test unauthorized API requests"""
