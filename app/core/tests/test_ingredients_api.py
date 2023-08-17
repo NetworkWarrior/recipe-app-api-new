@@ -49,8 +49,8 @@ class PrivateIngredientsTests(TestCase):
 
         res = self.client.get(INGREDIENTS_URL)
 
-        Ingredient = Ingredient.objects.all().order_by('-name')
-        serializer = IngredientSerializer(Ingredient, many=True)
+        ingredient = Ingredient.objects.all().order_by('-name')
+        serializer = IngredientSerializer(ingredient, many=True)
         self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertEqual(res.data, serializer.data)
 
@@ -58,7 +58,10 @@ class PrivateIngredientsTests(TestCase):
         """Test list of ingredients is limited to authenticaate user."""
         user2 = create_user(email='user2@example.com')
         Ingredient.objects.create(user=user2, name='ingredient2')
-        ingredient = Ingredient.objects.create(user=self.user, name='Ingredeient')
+        ingredient = Ingredient.objects.create(
+            user=self.user,
+            name='Ingredeient'
+        )
 
         res = self.client.get(INGREDIENTS_URL)
 
