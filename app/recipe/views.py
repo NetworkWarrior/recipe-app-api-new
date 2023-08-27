@@ -105,7 +105,6 @@ class RecipeViewSet(viewsets.ModelViewSet):
         ]
     )
 )
-
 @extend_schema_view(
     list=extend_schema(
         parameters=[
